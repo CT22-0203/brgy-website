@@ -1,8 +1,33 @@
 const form = document.querySelector(".form-index");
 
+const nameInput = document.getElementById("f-name");
+nameInput.addEventListener("input", function() {
+    this.value = this.value.replace(/[^a-zA-ZñÑ\s]/g, "");
+});
+
+["chairs", "tables", "tents"].forEach(function(id) {
+    const input = document.getElementById(id);
+
+    input.addEventListener("keydown", function(event) {
+        const blockedKeys = ["e", "E", "+", "-", "."];
+        if (blockedKeys.includes(event.key)) {
+            event.preventDefault();
+        }
+    });
+
+
+    input.addEventListener("input", function() {
+        this.value = this.value.replace(/[^0-9]/g, "");
+    });
+});
+
+
 form.addEventListener("submit", function(event) {
 
     event.preventDefault();
+
+    const name = document.getElementById("f-name").value;
+    const address = document.getElementById("address").value;
 
     const dateBorrowed = document.getElementById("dateBorrowed").value;
     const dateReturned = document.getElementById("dateReturned").value;
@@ -11,7 +36,8 @@ form.addEventListener("submit", function(event) {
     const tables = document.getElementById("tables").value;
     const tents = document.getElementById("tents").value;
 
-    const validID = document.getElementById("validID").files.length;
+    const validIDFiles = document.getElementById("validID").files;
+    const validID = validIDFiles.length;
 
     if (Number(chairs) === 0 && Number(tables) === 0 && Number(tents) === 0) {
         alert("Please select at least one item to borrow.");
