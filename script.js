@@ -78,7 +78,6 @@ form.addEventListener("submit", function(event) {
 
     if (!confirmSubmit) {
         alert("Your borrower slip has been submitted successfully.");
-        event.preventDefault();
         window.location.href = "home.html";
     }
 
