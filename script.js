@@ -78,7 +78,15 @@ form.addEventListener("submit", function(event) {
 
     if (!confirmSubmit) {
         alert("Your borrower slip has been submitted successfully.");
-        window.location.href = "home.html";
+        event.preventDefault();
+    }
+
+    const resetConfirm = confirm(
+        "Do you want to reset the form after submission?"
+    );
+
+    if (resetConfirm) {
+        form.reset();
     }
 
 });
